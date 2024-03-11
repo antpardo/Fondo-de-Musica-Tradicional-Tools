@@ -8,6 +8,7 @@ This musicological project makes an invaluable Spanish traditional music collect
 The FMT received support from the Fundación General CSIC in the 2015-2016 biennium for digitization and equipment renewal. Research on Fondo de Música Tradicional CSIC-IMF was part of the R+D Project "Hispanic Polyphony and Music of Oral Tradition in the Age of Digital Humanities" (HAR2016-75371-P, Spanish Ministry of Science and Innovation, 2016-2020). The website encourages user participation through a Facebook page, facilitating the sharing of personal experiences related to the music repertoire in the Fondo de Música Tradicional.
 
 At present, the development of the FMT is an objetive of the R+D Proyect entitled "Desarrollo digital del Fondo de Música Tradicional IMF-CSIC" (TED2021-130843B-I00)  ("Convocatoria 2021 de proyectos estratégicos orientados a la transición ecológica y a la transición digital en el marco del plan de recuperación, transformación y resiliencia"), a grant funded by the Spanish Ministerio de Ciencia e Innovación (MCIN)/AEI/10.13039/501100011033/ and the European Union NextGenerationEU/PRTR. Period: 1/12/2022 to 30/11/2024. PI: Emilio Ros-Fábregas.
+
 Research Team: 
 - María Gembero-Ustárroz (IMF-CSIC)
 - Ascensión Mazuela-Anguita (Universidad de Granada)
