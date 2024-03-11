@@ -14,7 +14,12 @@ Research Team:
 - Antonio Pardo-Cayuela (Universidad de Murcia)
 - Andrea Puentes-Blanco (IMF-CSIC) 
 - Emilio Ros-Fábregas (IMF-CSIC). 
+
 Work Team: 
--María del Mar Miranda-López (contratada posdoctoral Margarita Salas, Universitat de Girona / IMF-CSIC), Miguel López-Fernández (Conservatorio Superior de Música "Manuel Castillo" de Sevilla), Antoni Llofriu-Prohens (doctorando, Universitat de Barcelona), Pablo López-Rocamora (doctorando, Universidad de Murcia) and Juan Francisco Perez Fuentes (Conservatorio Profesional de Música "Ángel Barrios" de Granada). 
+- María del Mar Miranda-López (contratada posdoctoral Margarita Salas, Universitat de Girona / IMF-CSIC)
+- Miguel López-Fernández (Conservatorio Superior de Música "Manuel Castillo" de Sevilla)
+- Antoni Llofriu-Prohens (doctorando, Universitat de Barcelona)
+- Pablo López-Rocamora (doctorando, Universidad de Murcia)
+- Juan Francisco Perez Fuentes (Conservatorio Profesional de Música "Ángel Barrios" de Granada). 
 
 
