@@ -518,7 +518,7 @@ for i in ex:
     else:
         print(Fore.RED + 'Fallo grave.' + Fore.RED + f'''Fallo al añadir el autor de la entrada.\n
         Saliendo de pieza {Titulo[i]} ({i + 1}). Continuando...''')
-        errors.append(f).click()
+        #errors.append(f).click()
         driver.find_element("xpath", '/html/body/div[1]/header/nav/div[1]/ul/li[1]/a').click()
         time.sleep(3)
     print(Fore.GREEN + '[ok]' + Fore.RESET + f'AUTOR ENTRADA: añadiendo López López, Albert' + Fore.RED + ' [preset] ' + Fore.RESET + f'a ({Titulo[i]} ({i + 1} de REPERTORIO')
