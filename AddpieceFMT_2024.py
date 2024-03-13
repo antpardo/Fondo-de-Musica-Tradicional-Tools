@@ -66,7 +66,7 @@ selection = list()
 conv = lambda i : i or ''
 
 try:
-    con = sqlite3.connect('/home/antonio/Dropbox/CSIC_IMF_FMT/AMRQ_ASFPardo/AMRQ_ASFPardo20240221_test.sqlite')
+    con = sqlite3.connect('/path/to/database.sqlite')
     print(Fore.GREEN + f'[ok]' + Fore.RESET + f' Conexión con tabla REPERTORIO\n')
 except:
     print(Fore.RED + f'[x]' + Fore.RESET + f' FALLO de conexión con la tabla REPEROTRIO')
@@ -90,9 +90,9 @@ def retrieve_column_tuple(x,y):
         else:
             y.append(i)
 
-usr = 'antonio'
-psw = 'anatema2001'
-submission_author = 'Albert López López'
+usr = 'user'
+psw = 'password'
+submission_author = 'Submission Author'
 
 ID = list()
 URL_FMT = list()     
