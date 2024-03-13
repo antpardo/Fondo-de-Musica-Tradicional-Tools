@@ -1,4 +1,13 @@
 # Fondo de Musica Tradicional Tools
+
+This set of tools is designed for the management and the uploading of large amounts of data about informants and pieces of music to the platform of the Fondo de Música Tradicional (FMT). The aim is to improve the quality of the data uploaded to this platform and to reduce the upload time.
+
+The toolkit consists of the following elements
+
+- A database in SQLite format with three tables: (a) "team_data", which contains the usernames, passwords and other specific data of FMT staff; (b) "informants", which collects the data of traditional music performers according to the model used in FMT; and (c) "pieces", which contains the data of musical pieces, also according to the model defined in FMT.
+ 
+# About the FMT
+
 The Fondo de Música Tradicional (FMT) of the Institution Milá y Fontanals of Research in Humanities (IMF-CSIC) in Barcelona is a comprehensive collection comprising a physical archive and an open-access digital platform. The physical archive contains over 25,000 melodies gathered between 1944 and 1960 from all regions of Spain. This was accomplished through "folkloric missions" and contests organized by the former Instituto Español de Musicología of the CSIC in Barcelona. The archive includes documentation on researchers, musical recordings in various formats, films, and historical audiovisual devices.
 
 Since 2013, the digitized and cataloged materials are accessible on the FMT digital platform (https://musicatradicional.eu/es/home, ISSN 2564-8500). Created by Emilio Ros-Fabregas, this platform is considered the most significant digital repository of oral tradition music in the Hispanic world. By April 2023, it included over 48,000 pieces from 9,300 informants in 3,900 locations.
