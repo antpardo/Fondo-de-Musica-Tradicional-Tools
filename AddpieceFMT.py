@@ -26,7 +26,7 @@ now = datetime.now()
 timestamp = now.strftime("%Y%m%d_%H%M%S")
 
 # Crear el nombre del archivo con la fecha y hora
-file_name = f"addmovement_{timestamp}.log"
+file_name = f"addpieceFMT_{timestamp}.log"
 
 # Crear y abrir el archivo de registro con la codificación UTF-8
 log_file = open(file_name, 'w', encoding='utf-8')
@@ -90,8 +90,8 @@ def retrieve_column_tuple(x,y):
         else:
             y.append(i)
 
-usr = 'antonio'
-psw = 'anatema2001'
+usr = ''
+psw = ''
 submission_author = 'Albert López López'
 
 ID = list()
