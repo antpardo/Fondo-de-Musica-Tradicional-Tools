@@ -8,7 +8,7 @@ The toolkit consists of the following elements
 
 - The files (a) Addinformant.py, (b) Addpiece.py and (c) Updatepiece.py that add informants, add pieces and update the information of the pieces from the local database to the online FMT platform, respectively. 
  
-# About the FMT
+## About the FMT
 
 The Fondo de Música Tradicional (FMT) of the Institution Milá y Fontanals of Research in Humanities (IMF-CSIC) in Barcelona is a comprehensive collection comprising a physical archive and an open-access digital platform. The physical archive contains over 25,000 melodies gathered between 1944 and 1960 from all regions of Spain. This was accomplished through "folkloric missions" and contests organized by the former Instituto Español de Musicología of the CSIC in Barcelona. The archive includes documentation on researchers, musical recordings in various formats, films, and historical audiovisual devices.
 
