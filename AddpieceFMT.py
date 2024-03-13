@@ -92,7 +92,7 @@ def retrieve_column_tuple(x,y):
 
 usr = ''
 psw = ''
-submission_author = 'Albert López López'
+submission_author = ''
 
 ID = list()
 URL_FMT = list()     
