@@ -2,6 +2,8 @@
 
 This set of tools is designed for the management and the uploading of large amounts of data about informants and pieces of music to the platform of the Fondo de Música Tradicional (FMT). The aim is to improve the quality of the data uploaded to this platform and to reduce the upload time.
 
+With the first version of these tools, developed by Pablo López Rocamora (PhD student, University of Murcia) and Antonio Pardo-Cayuela (University of Murcia), between September 2021 and March 2022, it was possible to collect, organise, format and upload to the FMT data from some 1,500 informants and 23,000 pieces collected by the Joaquín Díaz Foundation. These tools are currently being updated to do the same with some 1,000 informants and 9,300 pieces collected by the researcher Fermín Pardo Pardo, which are located in the Municipal Archive of the City Council of Requena. This task is being carried out by Albert López López (Conservatorio de Molina de Segura) and Antonio Pardo-Cayuela (Universidad de Murcia).
+
 The toolkit consists of the following elements
 
 - A database in SQLite format with three tables: (a) "team_data", which contains the usernames, passwords and other specific data of FMT staff; (b) "informants", which collects the data of traditional music performers according to the model used in FMT; and (c) "pieces", which contains the data of musical pieces, also according to the model defined in FMT. The definition of the database can be found in the file FMT_database.txt.
