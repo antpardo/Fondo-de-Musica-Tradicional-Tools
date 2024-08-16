@@ -372,6 +372,9 @@ for i in ex:
     gen02_upp = Genero02[i].upper()
     gen03_low = Genero03[i].lower()
     gen03_upp = Genero03[i].upper()
+    #gen04_low = Genero04[i].lower()
+    #gen04_upp = Genero04[i].upper()
+    
         
     try:    
         driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
@@ -392,6 +395,79 @@ for i in ex:
         print(Fore.GREEN + f'[ok]' + Fore.RESET + f' GENEROS: añadiendo {Genero01[i]} {Genero02[i]} {Genero03[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
         time.sleep(3)
     
+
+    '''
+    # Definir la consulta SQL para verificar si Genero01 no está vacío
+    consulta_sql = "SELECT COUNT(*) FROM repertorio WHERE Genero02 IS NOT NULL"
+    cursor.execute(consulta_sql)
+    resultado_genero01 = cursor.fetchone()
+
+    # Definir la consulta SQL para verificar si Genero03 no está vacío
+    consulta_sql = "SELECT COUNT(*) FROM repertorio WHERE Genero03 IS NOT NULL"
+    cursor.execute(consulta_sql)
+    resultado_genero03 = cursor.fetchone()
+
+    # Definir la consulta SQL para verificar si Genero02 no está vacío
+    consulta_sql = "SELECT COUNT(*) FROM repertorio WHERE Genero02 IS NOT NULL"
+    cursor.execute(consulta_sql)
+    resultado_genero02 = cursor.fetchone()
+
+    # Definir la consulta SQL para verificar si Genero03 no está vacío
+    consulta_sql = "SELECT COUNT(*) FROM repertorio WHERE Genero03 IS NOT NULL"
+    cursor.execute(consulta_sql)
+    resultado_genero03 = cursor.fetchone()
+
+    
+    # Definir la consulta SQL para verificar si Genero04 no está vacío
+    consulta_sql = "SELECT COUNT(*) FROM repertorio WHERE Genero04 IS NOT NULL"
+    cursor.execute(consulta_sql)
+    resultado_genero04 = cursor.fetchone()
+    
+
+    # Verificar si Genero02 no está vacío
+    if resultado_genero02[0] > 0 and resultado_genero03[0] < 0:
+        # Hacer clic en la opción de Genero01
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en la opción de Genero02
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
+        time.sleep(3)
+        # Añadir Genero01 y Genero02
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-dropbox-add--2"]').click()
+
+    # Verificar si Genero03 no está vacío
+    elif resultado_genero03[0] > 0:
+        # Hacer clic en la opción de Genero01 //*[@id="edit-field-genre-und-hierarchical-select-selects-0"]
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en la opción de Genero02
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en la opción de Genero03
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-2"]/option[contains(translate(., "{gen03_low}","{gen03_upp}"), "{gen03_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en el botón de añadir de Genero03
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-dropbox-add--3"]').click()
+    '''    
+    '''    
+    # Verificar si Genero04 no está vacío
+    elif resultado_genero04[0] > 0:
+        # Hacer clic en la opción de Genero01
+        driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en la opción de Genero02
+        driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en la opción de Genero03
+        driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-2"]/option[contains(translate(., "{gen03_low}","{gen03_upp}"), "{gen03_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en la opción de Genero04
+        driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-3"]/option[contains(translate(., "{gen04_low}","{gen04_upp}"), "{gen04_upp}")]').click()
+        time.sleep(3)
+        # Hacer clic en el botón de añadir de Genero03
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-dropbox-add--4"]').click()    
+    '''
+     
     
     #Informantes
 
@@ -516,11 +592,28 @@ for i in ex:
         # Libera la tecla de control después de seleccionar los elementos
         actions.key_up(Keys.CONTROL).perform()
 
-    print (Fore.GREEN + '[ok]' + Fore.RESET + f' PERSONAS COLABORADORAS: añadiendo López López, Albert y Pardo-Cayuela, Antonio' + Fore.RED + f' [preset] ' + Fore.RESET + f'a {Titulo[i]} ({i + 1} de REPERTORIO)')
+    print(Fore.GREEN + '[ok]' + Fore.RESET + f' PERSONAS COLABORADORAS: añadiendo López López, Albert y Pardo-Cayuela, Antonio' + Fore.RED + f' [preset] ' + Fore.RESET + f'a {Titulo[i]} ({i + 1} de REPERTORIO)')
+
+    #Observaciones
+    
+    try:
+        driver.find_element("xpath", '/html/body/div[3]/div[2]/div[2]/div/div/form/div/div[21]/div/div/div/div/div[1]/div/div/iframe').click()
+    except:
+        print(Fore.RED + '[x]' + Fore.RESET + f'  OBSERVACIONES: fallo al añadirlas a {Titulo[i]} registro {i + 1} de REPERTORIO)')
+        
+    print(Fore.GREEN + f'[ok]' + Fore.RESET + f' OBSERVACIONES: añadiendo {Observaciones[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+    
+    try:
+        driver.find_element("xpath", '/html/body/div[3]/div[2]/div[2]/div/div/form/div/div[21]/div/div/div/div/div[1]/div/div/iframe').send_keys(Observaciones[i])
+    except:
+        print(Fore.RED + f'[x]' + Fore.RESET + f'  OBSERVACIONES: fallo al añadir {Observaciones[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+
+    driver.switch_to.default_content()
+
 
     ###Subida MP3
 
-    generic_mp3_path = "/home/antonio/ASFPardo_audios/AMRQ_ASFP_002ABmp3/"
+    generic_mp3_path = "/media/antonio/Maxtor/ASFPardo_audios/AMRQ_ASFP_010AB/010ABmp3/"
     mp3file = Audio[i]
     full_path_to_file = os.path.join(generic_mp3_path, mp3file)
 
@@ -563,10 +656,27 @@ for i in ex:
         pass
     
     else:
-        print(Fore.RED + f'[x]' + Fore.RESET + f' IDIOMA: valor {Idioma[i]} inesperado para {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+        print(Fore.RED + f'[x]' + Fore.RESET + f'  IDIOMA: campo en blanco o valor {Idioma[i]} inesperado para {Titulo[i]} (registro {i + 1} de REPERTORIO)')
         pass
 
+    
+    ##Audio
 
+        
+    try:
+        myElemA = driver.find_element(By.CSS_SELECTOR, "#edit-field-audiovisual-und > option[value='4524']")
+        #myElemB = driver.find_element(By.CSS_SELECTOR, "#edit-field-audiovisual-und > option[value='7844']")
+        myElemA.click()
+        #actions.key_down(Keys.CONTROL).perform()
+        #myElemB.click()
+        #actions.key_up(Keys.CONTROL).perform()
+        
+    except:
+
+        print(Fore.RED + '[x]' + Fore.RESET + f'AUDIO: fallo al seleccionarlo en {Titulo[i]} (registro {i + 1} de REPERTORIO)')               
+
+
+             
     #Autor de la entrada
 
     if submission_author:='Albert López López':
@@ -583,30 +693,31 @@ for i in ex:
     print(Fore.GREEN + '[ok]' + Fore.RESET + f' AUTOR ENTRADA: añadiendo López López, Albert' + Fore.RED + ' [preset] ' + Fore.RESET + f'a {Titulo[i]} ({i + 1} de REPERTORIO)')
     #continue
         
-##Guardar entrada 
-#guardar = driver.find_element("xpath", '//*[@id="edit-submit"]')       
-#guardar.click()
-#time.sleep(3)
-#url_fmt = driver.current_url
-#cur.execute(f'UPDATE repertorio SET URL_FMT=? WHERE ID_pieza =?', (url_fmt, int(ID_pieza[i])))
-#con.commit()
-#time.sleep(5)
+    ##Guardar entrada 
+    '''
+    guardar = driver.find_element("xpath", '//*[@id="edit-submit"]')       
+    guardar.click()
+    time.sleep(5)
+    #url_fmt = driver.current_url
+    #cur.execute(f'UPDATE repertorio SET URL_FMT=? WHERE ID_pieza =?', (url_fmt, int(ID_pieza[i])))
+    #con.commit()
+    #time.sleep(3)
 
-#url_fmt = driver.current_url
-#cur.execute("UPDATE repertorio SET URL_FMT=? WHERE ID_pieza =?", (url_fmt, ID_pieza[i]))
-#con.commit()
-#time.sleep(5)
-
+    url_fmt = driver.current_url
+    cur.execute("UPDATE repertorio SET URL_FMT=? WHERE ID_pieza =?", (url_fmt, ID_pieza[i]))
+    con.commit()
+    time.sleep(5)
+    '''
 
     try:
-       wait.until(EC.element_to_be_clickable(("xpath", '//*[@id="edit-submit"]'))).click()
-       time.sleep(5)
-       url_ref = driver.current_url
-       #cur.execute(f'UPDATE informantes SET URL_FMT=? WHERE ID =?', (url_ref, int(id_sql[i])))
-       cursor.execute(f'UPDATE repertorio SET URL_FMT=? WHERE ID_pieza=?', (url_ref, ID_pieza[i]))
-       con.commit()
-       #time.sleep(2)
-       print(Fore.GREEN + f'[ok]' + Fore.RESET + f'Guardando entrada pieza {Titulo[i]} (nº {i + 1} de REPERTORIO)')
+        wait.until(EC.element_to_be_clickable(("xpath", '//*[@id="edit-submit"]'))).click()
+        time.sleep(5)
+        url_ref = driver.current_url
+        #cur.execute(f'UPDATE informantes SET URL_FMT=? WHERE ID =?', (url_ref, int(id_sql[i])))
+        cursor.execute(f'UPDATE repertorio SET URL_FMT=? WHERE ID_pieza=?', (url_ref, ID_pieza[i]))
+        con.commit()
+        #time.sleep(2)
+        print(Fore.GREEN + f'[ok]' + Fore.RESET + f' GUARDANDO entrada pieza {Titulo[i]} (nº {i + 1} de REPERTORIO)')
     except:
         print(Fore.RED + f'[x]' + f'FALLO GRAVE: error al guardar la entrada.\n'
                     f'Saliendo pieza {Titulo[i]} ({i + 1} ).\n'
@@ -621,7 +732,7 @@ driver.quit()
 ###Mensajes finales        
     
 
-print(Fore.ORANGE + f'==========Subida de registros completada==========')
+print(Fore.GREEN + f'==========Subida de registros completada==========')
         
 if len(errors) == 0:
     print(Fore.RESET + f'NO SE HAN PRODUCIDO ERRORES GRAVES DURANTE LA EJECUCIÓN.')

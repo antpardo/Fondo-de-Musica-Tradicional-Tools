@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
 import os
 import time
@@ -179,7 +180,7 @@ print(f'Se han obtenido los datos de {len(Titulo)} piezas con éxito.')
 
 
 while True:
-    inp = input('¿Qué le gustaría hacer?\n1. Subir al FMT todas las piezas de la DB (escriba "All").\n2. Subir sólo una entrada (escriba el nº ABSOLUTO que le asigna la DB).\n3. Un intervalo de obras (escriba los nos. ABSOLUTOS asignados por la DB que definen el intervalo, separados por un guion (p. ej. 147-230).\n4. Salir ("exit").\n')
+    inp = input('¿Qué le gustaría hacer?\n1. Actualizar en FMT todas las piezas de la DB (escriba "All").\n2. Actualizar sólo una entrada (escriba el nº ABSOLUTO que le asigna la DB).\n3. Actualizar un intervalo de obras (escriba los nos. ABSOLUTOS asignados por la DB que definen el intervalo, separados por un guion (p. ej. 147-230).\n4. Salir ("exit").\n')
     if inp == 'All':
         ex = range(0, len(Titulo))
         break
@@ -243,8 +244,8 @@ driver.implicitly_wait(3)
 driver.find_element("xpath", '//*[@id="edit-pass"]').send_keys(psw_value)
 driver.implicitly_wait(3)
 driver.find_element("xpath", '//*[@id="edit-submit"]').click()
-driver.get('https://musicatradicional.eu/es/node/add/piece')
-print(Fore.GREEN + f'[ok]' + Fore.RESET + f' Añadiendo piezas. Espere...')
+#driver.get('https://musicatradicional.eu/es/node/add/piece')
+#print(Fore.GREEN + f'[ok]' + Fore.RESET + f' Añadiendo piezas. Espere...')
 
 for i in ex:
     url_ref = ''
@@ -273,26 +274,28 @@ for i in ex:
         print(Fore.RED + '[x]' + f'  TITULO: fallo al actualizar {Titulo[i]} a FMT (regsitro {i + 1} de REPERTORIO')
         
 ##Íncipit de texto
-
+           
     try:
         incipit_txt = driver.find_element("xpath", '//*[@id="edit-field-text-incipit-und-0-value"]')
         incipit_txt.clear()
         incipit_txt.click()
-    except:
-        print(Fore.RED + '[x]' + Fore.RESET + f'  INCIPIT TXT: fallo al actualizar {Incipit_txt[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
         
-    print(Fore.GREEN + '[ok]' + Fore.RESET + f' INCIPIT TXT: actualizando {Incipit_txt[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+    except:
+        print(Fore.RED + '[x]' + Fore.RESET + f'  INCIPIT TXT: fallo al actualizarlo en  {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+        
+    print(Fore.GREEN + '[ok]' + Fore.RESET + f' INCIPIT TXT: actualizado en {Titulo[i]} (registro {i + 1} de REPERTORIO)')
     
     try:
         incipit_txt.send_keys(Incipit_txt[i])
     except:
-        print(Fore.RED + '[x]' + Fore.RESET + f'  INCIPIT TXT: fallo al actualizar {Incipit_txt[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+        print(Fore.RED + '[x]' + f'  INCIPIT_TXT: fallo al actualizarlo en {Titulo[i]} a FMT (regsitro {i + 1} de REPERTORIO')
+    
 
 ##Íncipit musical
 
     try:
         incipit_mus = driver.find_element("xpath", '//*[@id="edit-field-melody-und-0-value"]')
-        incipit_txt.clear()
+        incipit_mus.clear()
         incipit_mus.click()
     except:
         print(Fore.RED + '[x]' + f'  INCIPIT MUSICAL: fallo al añdir {Incipit_mus[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
@@ -307,10 +310,12 @@ for i in ex:
 ##Tipo de pieza (vocal o instrumental)
     
     pieza_vocal = driver.find_element("xpath", '//*[@id="edit-field-piece-type-und-vocal"]')
-    pieza_vocal.clear()
+    if pieza_vocal.is_selected():
+       pieza_vocal.click() 
 
     pieza_inst = driver.find_element("xpath", '//*[@id="edit-field-piece-type-und-instrumental"]')
-    pieza_inst.clear()
+    if pieza_inst.is_selected():
+       pieza_inst.click()
 
     if Tipo_pieza[i] == 'vocal':
         driver.find_element("xpath", '//*[@id="edit-field-piece-type-und-vocal"]').click()
@@ -328,10 +333,8 @@ for i in ex:
     
 ## ID PIEZA
     
-    
-
     try:
-        idpieza = driver.find_element("xpath", f'//*[@id="edit-field-piece-id-und-0-value"]')
+        idpieza = driver.find_element("xpath", '//*[@id="edit-field-piece-id-und-0-value"]')
         idpieza.clear()
         idpieza.click()
     except:
@@ -344,7 +347,7 @@ for i in ex:
     except:
         print(Fore.RED + '[x]' + Fore.RESET + f'  Fallo al actualizar ID PIEZA {ID_pieza[i]} en la posición Nº {i + 1}')
   
-
+    '''    
 #Nota_inicial
     
     # Esperar hasta que el elemento sea clickable
@@ -371,11 +374,12 @@ for i in ex:
         print(Fore.GREEN + '[ok]' + Fore.RESET + f" NOTA_INICIAL: '{spitchDB}' añadida correctamente a '{Titulo[i]} '({i + 1} de REPERTORIO)")
     else:
         print(Fore.RED + f'[x]' + Fore.RESET + f"  NOTA_INICIAL: '{spitchDB}' no existe en el menú o en el campo Nota_inicia de '{Titulo[i]}'({i + 1} de REPERTORIO)")
-
+    '''
+    '''
     #Generos01 y 02
 
     #Remove Género
-    driver.find_element("xpath", '/html/body/div[3]/div[2]/div[2]/div/div/form/div/div[9]/div/div/div[2]/table/tbody/tr/td[2]/a')
+    #driver.find_element("xpath", '/html/body/div[3]/div[2]/div[2]/div/div/form/div/div[9]/div/div/div[2]/table/tbody/tr/td[2]/a').click()
        
     gen01_low = Genero01[i].lower()
     gen01_upp = Genero01[i].upper()
@@ -384,25 +388,26 @@ for i in ex:
     gen03_low = Genero03[i].lower()
     gen03_upp = Genero03[i].upper()
         
+
     try:    
-        driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
         time.sleep(3)
-        driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
+        driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
         time.sleep(3)
         driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-dropbox-add--2"]').click()
         print(Fore.GREEN + f'[ok]' + Fore.RESET + f' GENEROS: actualizando {Genero01[i]} {Genero02[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
         time.sleep(3)
     except:
-        #driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
+        #driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-0"]/option[contains(translate(., "{gen01_low}","{gen01_upp}"), "{gen01_upp}")]').click()
         #time.sleep(3)
-        #driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
+        #driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-1"]/option[contains(translate(., "{gen02_low}","{gen02_upp}"), "{gen02_upp}")]').click()
         #time.sleep(3)
-        #driver.find_element("xpath", f'//*[@id="edit-field-genre-und-hierarchical-select-selects-2"]/option[contains(translate(., "{gen03_low}","{gen03_upp}"), "{gen03_upp}")]').click()
+        #driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-selects-2"]/option[contains(translate(., "{gen03_low}","{gen03_upp}"), "{gen03_upp}")]').click()
         #time.sleep(3)
         driver.find_element("xpath", '//*[@id="edit-field-genre-und-hierarchical-select-dropbox-add--3"]').click()
         print(Fore.GREEN + f'[ok]' + Fore.RESET + f' GENEROS: actualizando {Genero01[i]} {Genero02[i]} {Genero03[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
         time.sleep(3)
-    
+    '''
     
     #Informantes
 
@@ -423,7 +428,7 @@ for i in ex:
     ###Localidad, Provincia y CA
 
     #Remove Localidad, Provincia y CA
-    driver.find_element("xpath", 'html/body/div[3]/div[2]/div[2]/div/div/form/div/div[11]/div/div/div[2]/table/tbody/tr/td[2]/a')
+    #driver.find_element("xpath", 'html/body/div[3]/div[2]/div[2]/div/div/form/div/div[11]/div/div/div[2]/table/tbody/tr/td[2]/a').click()
         
     caautonoma_1low = Comunidad_Autonoma[i].lower()
     caautonoma_1upp = Comunidad_Autonoma[i].upper()
@@ -433,11 +438,11 @@ for i in ex:
     localidad_3upp = Localidad[i].upper()
     
     try:    
-        driver.find_element("xpath", f'//*[@id="edit-field-location-official-und-hierarchical-select-selects-0"]/option[contains(translate(., "{caautonoma_1low}","{caautonoma_1upp}"), "{caautonoma_1upp}")]').click()
+        driver.find_element("xpath", '//*[@id="edit-field-location-official-und-hierarchical-select-selects-0"]/option[contains(translate(., "{caautonoma_1low}","{caautonoma_1upp}"), "{caautonoma_1upp}")]').click()
         time.sleep(3)
-        driver.find_element("xpath", f'//*[@id="edit-field-location-official-und-hierarchical-select-selects-1"]/option[contains(translate(., "{provincia_2low}","{provincia_2upp}"), "{provincia_2upp}")]').click()
+        driver.find_element("xpath", '//*[@id="edit-field-location-official-und-hierarchical-select-selects-1"]/option[contains(translate(., "{provincia_2low}","{provincia_2upp}"), "{provincia_2upp}")]').click()
         time.sleep(3)
-        driver.find_element("xpath", f'//*[@id="edit-field-location-official-und-hierarchical-select-selects-2"]/option[contains(translate(., "{localidad_3low}","{localidad_3upp}"), "{localidad_3upp}")]').click()
+        driver.find_element("xpath", '//*[@id="edit-field-location-official-und-hierarchical-select-selects-2"]/option[contains(translate(., "{localidad_3low}","{localidad_3upp}"), "{localidad_3upp}")]').click()
         time.sleep(3)
         driver.find_element("xpath", '//*[@id="edit-field-location-official-und-hierarchical-select-dropbox-add--3"]').click()
         time.sleep(5)
@@ -457,6 +462,7 @@ for i in ex:
 
 ####Fuente
 
+    '''
     try:
         fuente = driver.find_element("xpath", '//*[@id="edit-field-source-und"]/option[181]')
         fuente.clear()
@@ -468,6 +474,7 @@ for i in ex:
         errors.append(f'{Titulo[i]} con la posición Nº {i + 1}')
     print (Fore.GREEN + '[ok]' + Fore.RESET + f' FUENTE: actualizando AMRQ_ASFPardo a la pieza {Titulo[i]} ({i + 1} de REPERTORIO)')
 
+    		
 ####Investigador  
 
     try:
@@ -550,7 +557,19 @@ for i in ex:
 
     ###AUDIO (MP3)
 
-    generic_mp3_path = "/home/antonio/ASFPardo_audios/AMRQ_ASFP_002ABmp3/"
+    try:
+        # Esperar a que el elemento sea visible y pueda ser clickeable
+        delete_audio = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "edit-field-audio-und-0-remove-button")))
+        # Una vez que el elemento sea clickeable, hacer clic en él
+        delete_audio.click()
+        print(Fore.GREEN + f'[ok]' + Fore.RESET + f" Archivo de audio eliminado")
+    
+    except NoSuchElementException:
+        print(Fore.RED + f'[x]' + Fore.RESET + f"  Archivo de audio no encontrado para eliminar")
+
+
+
+    generic_mp3_path = "/home/antonio/ASFPardo_audios/AMRQ_ASFP_001ABmp3/"
     mp3file = Audio[i]
     full_path_to_file = os.path.join(generic_mp3_path, mp3file)
 
@@ -575,6 +594,7 @@ for i in ex:
 
     print (Fore.GREEN + '[ok]' + Fore.RESET + f' AUDIO FILE: subiendo {Audio[i]} a {Titulo[i]} ({i + 1} de REPERTORIO)')
     
+    '''
     
     ###Idioma
 #Desactivar idioma español (configurado así por defecto en FMT)
@@ -590,6 +610,11 @@ for i in ex:
     elif Idioma[i] == 'Català/Mallorquí/Valencià':
         driver.find_element("xpath", '//*[@id="edit-field-language-und-3567"]').click()
         print(Fore.GREEN + '[ok]' + Fore.RESET + f' IDIOMA: actualizando {Idioma[i]} a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
+        pass
+    
+    elif Idioma[i] == '':
+        #driver.find_element("xpath", '//*[@id="edit-field-language-und-3567"]').click()
+        print(Fore.GREEN + '[ok]' + Fore.RESET + f' IDIOMA: pieza sin idioma a {Titulo[i]} (registro {i + 1} de REPERTORIO)')
         pass
     
     else:
@@ -634,9 +659,9 @@ for i in ex:
     try:
        wait.until(EC.element_to_be_clickable(("xpath", '//*[@id="edit-submit"]'))).click()
        time.sleep(5)
-       #url_ref = driver.current_url
+       url_ref = driver.current_url
        #cur.execute(f'UPDATE informantes SET URL_FMT=? WHERE ID =?', (url_ref, int(id_sql[i])))
-       #cursor.execute(f'UPDATE repertorio SET URL_FMT=? WHERE ID_pieza=?', (url_ref, ID_pieza[i]))
+       cursor.execute(f'UPDATE repertorio SET URL_FMT=? WHERE ID_pieza=?', (url_ref, ID_pieza[i]))
        #con.commit()
        #time.sleep(2)
        print(Fore.GREEN + f'[ok]' + Fore.RESET + f'Guardando ACTUALIZACIÓN pieza {Titulo[i]} (nº {i + 1} de REPERTORIO)')
@@ -654,7 +679,7 @@ driver.quit()
 ###Mensajes finales        
     
 
-print(Fore.ORANGE + f'==========Actualización de registros completada==========')
+print(Fore.GREEN + f'==========Actualización de registros completada==========')
         
 if len(errors) == 0:
     print(Fore.RESET + f'NO SE HAN PRODUCIDO ERRORES GRAVES DURANTE LA EJECUCIÓN.')
