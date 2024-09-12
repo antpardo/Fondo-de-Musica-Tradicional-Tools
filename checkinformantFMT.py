@@ -94,7 +94,7 @@ else:
 print(f'Se han obtenido los datos de {len(Nombre_FMT)} informantes con éxito.')
 
 while True:
-    inp = input('Escriba el rango de informantes de la tabla INFORMANTES  que desea comprobar')
+    inp = input('Escriba el rango de informantes de la tabla INFORMANTES  que desea comprobar\n')
     if inp == 'All':
         ex = range(0, len(Nombre_FMT))
         break

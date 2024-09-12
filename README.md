@@ -8,7 +8,7 @@ The toolkit consists of the following elements
 
 - A database in SQLite format with three tables: (a) "team_data", which contains the usernames, passwords and other specific data of FMT staff; (b) "informants", which collects the data of traditional music performers according to the model used in FMT; and (c) "pieces", which contains the data of musical pieces, also according to the model defined in FMT. The definition of the database can be found in the file FMT_database.txt.
 
-- The files (a) Addinformant.py, (b) Addpiece.py and (c) Updatepiece.py that add informants, add pieces and update the information of the pieces from the local database to the online FMT platform, respectively. 
+- The files (a) addinformantFMT.py, (b) addpieceFMT.py, (c) updatepieceFMT.py and checkinformant.py, that adds informants, adds pieces, updates the information of the pieces from the local database to the online FMT platform, respectively. A new tool have been recently added: the file ckeckinformant.py, which checks whether the informants selected from the table "informants" have been added to FMT already, in order to avoid duplicates.
  
 ## About the FMT
 

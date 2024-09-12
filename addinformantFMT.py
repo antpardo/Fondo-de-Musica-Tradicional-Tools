@@ -384,13 +384,13 @@ for i in ex:
 
     guardar = driver.find_element("xpath", '//*[@id="edit-submit"]')       
     guardar.click()
-    time.sleep(3)
+    time.sleep(5)
         
     #Guardar URL en URL_FMT        
     url_fmt = driver.current_url
     cur.execute("UPDATE informantes SET URL_FMT=? WHERE ID =?", (url_fmt, int(ID[i])))
     con.commit()
-    time.sleep(5)
+    time.sleep(8)
     #except:
         #print(Fore.RED + f'Fallo grave.' + Fore.GREEN + f'No se pudo guardar la entrada.\n'
         #+ Fore.RESET + f'Saliendo de informante {Nombre_FMT[i]} con posición Nº {i + 1} y continuando')
